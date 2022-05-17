@@ -16,21 +16,21 @@ public class SizeEntity {
     @Column(name = "size_type")
     private String sizeType;
 
-    @Column(name = "price_base")
-    private BigDecimal priceBase;
+    @Column(name = "price")
+    private BigDecimal price;
 
     @Column(name = "pizza_id")
     private Integer pizzaId;
+
+    @ManyToOne
+    @JoinColumn(name = "pizza_id", insertable = false, updatable = false)
+    private PizzaEntity pizza;
 
     //To przy potencjalnym przyszłym dodaniu OrderSizeEntity
     /*
     @OneToMany(mappedBy = "size")
     private Set<OrderSizeEntity> orderSizes;
     */
-
-    @ManyToOne
-    @JoinColumn(name = "pizza_id", insertable = false, updatable = false)
-    private PizzaEntity pizza;
 
     public Integer getId() {
         return id;
@@ -48,12 +48,12 @@ public class SizeEntity {
         this.sizeType = sizeType;
     }
 
-    public BigDecimal getPriceBase() {
-        return priceBase;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setPriceBase(BigDecimal priceBase) {
-        this.priceBase = priceBase;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public Integer getPizzaId() {
